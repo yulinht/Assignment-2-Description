@@ -3,6 +3,7 @@ from mmu import Page
 
 class LruMMU(MMU):
     def __init__(self, frames):
+        # TODO: Constructor logic for LruMMU
         self.frames = frames
         self.debug_mode = False
         # Suppose Page() defaults to page_number = -1 and dirty = False
@@ -11,14 +12,20 @@ class LruMMU(MMU):
         self.disk_reads = 0
         self.disk_writes = 0
         self.page_faults = 0
+        return
 
     def set_debug(self):
+        # TODO: Implement the method to set debug mode
         self.debug_mode = True
+        return
 
     def reset_debug(self):
+        # TODO: Implement the method to reset debug mode
         self.debug_mode = False
+        return
 
     def read_memory(self, page_number):
+        # TODO: Implement the method to read memory
         if self.debug_mode:
             print(f"Reading page {page_number}")
 
@@ -30,7 +37,10 @@ class LruMMU(MMU):
             print(f"Total disk reads so far: {self.disk_reads}")
             print(f"Total disk writes so far: {self.disk_writes}\n")
 
+        return
+
     def write_memory(self, page_number):
+        # TODO: Implement the method to write memory
         if self.debug_mode:
             print(f"Writing page {page_number}")
 
@@ -49,14 +59,18 @@ class LruMMU(MMU):
             print(f"Total page faults so far: {self.page_faults}")
             print(f"Total disk reads so far: {self.disk_reads}")
             print(f"Total disk writes so far: {self.disk_writes}\n")
+        return
 
     def get_total_disk_reads(self):
+        # TODO: Implement the method to get total disk reads
         return self.disk_reads
 
     def get_total_disk_writes(self):
+        # TODO: Implement the method to get total disk writes
         return self.disk_writes
 
     def get_total_page_faults(self):
+        # TODO: Implement the method to get total page faults
         return self.page_faults
 
     
@@ -94,6 +108,8 @@ class LruMMU(MMU):
         # Case 2: No empty frame, LRU replacement (least used at the end)
         self.replace(page_number)
 
+        return
+
     def placement(self, page_number, frame_index):
         # Put page at the specified frame_index and move it to the front (MRU) 
         # Place on the specified frame (the default Page object that overwrites an empty frame)
@@ -105,7 +121,8 @@ class LruMMU(MMU):
         self.memory_frames.insert(0, used)
 
         if self.debug_mode:
-            print(f" Placed page {page_number} into empty frame {frame_index} -> moved to MRU")
+            print(f" Placed page {page_number} into empty frame {frame_index}  moved to MRU")
+        return
 
     def replace(self, page_number):
         # Replace LRU page (end of list), write back to disk if the replaced page is dirty
@@ -131,3 +148,5 @@ class LruMMU(MMU):
 
         if self.debug_mode:
             print(f" Replaced frame {replace_index} (was page {replace_number}) with page {page_number} at MRU")
+            
+        return
