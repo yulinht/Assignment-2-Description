@@ -28,3 +28,12 @@ class MMU:
 
     def get_total_page_faults(self):
         return -1
+
+class Page:
+        def __init__(self):
+    #def __init__(self, page_number):
+            self.page_number = -1. # None
+            self.dirty = False
+
+            
+         
